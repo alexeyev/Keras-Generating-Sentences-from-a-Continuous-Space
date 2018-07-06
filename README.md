@@ -13,16 +13,16 @@ unpack `fra.txt` into the the folder `./data/`. Then run
 ```
 
 ## References
-    - [Building Autoencoders in Keras](https://blog.keras.io/building-autoencoders-in-keras.html)
-    - [Generating-Sentences-from-a-Continuous-Space paper](https://arxiv.org/abs/1511.06349)
-    - Architecture fixed and inference implemented thanks to [this article on seq2seq in Keras](https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html)
+   * [Building Autoencoders in Keras](https://blog.keras.io/building-autoencoders-in-keras.html)
+   * [Generating-Sentences-from-a-Continuous-Space paper](https://arxiv.org/abs/1511.06349)
+   * Architecture fixed and inference implemented thanks to [this article on seq2seq in Keras](https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html)
  
 ## License
 MIT
 
 ## TODO
-    - Dropout and other tricks from the paper
-    - Initialization with word2vec/GloVE/whatever using the Embedding layer and its weights matrix
+   * Dropout and other tricks from the paper
+   * Initialization with word2vec/GloVE/whatever using the Embedding layer and its weights matrix
  
 ## Citation
 

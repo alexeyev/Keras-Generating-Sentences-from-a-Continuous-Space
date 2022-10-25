@@ -6,10 +6,24 @@ but the main ideas are implemented.
 
 ## Quick start
 
-To run a toy example, download [this small dataset](http://www.manythings.org/anki/fra-eng.zip) and 
-unpack `fra.txt` into the the folder `./data/`. Then run
+Updated: this code was written a while ago. So now probably the best way to run the script is using environments 
+(I am assuming that [anaconda](https://www.anaconda.com/products/distribution/) is installed and that you are 
+a Linux or WSL user, however, Mac/Windows instructions should be similar).
+
 ```bash
-    $ python3 train.py
+    conda create -y --name continuous_space python=3.6 && conda activate continuous_space
+    wget http://d2l-data.s3-accelerate.amazonaws.com/fra-eng.zip && \
+        unzip fra-eng.zip && mv fra-eng/fra.txt data/ && rm -r fra-eng* 
+    conda install -y tensorflow==1.13.1
+    conda install -y keras==2.2.4
+    conda install -c anaconda nltk==3.4.5
+    python -m nltk.downloader punkt
+```
+(this may take a while!)
+
+Then run e.g.
+```bash
+    python train.py --input data/fra.txt --epochs 20
 ```
 
 ## References
@@ -26,8 +40,20 @@ MIT
  
 ## Citation
 
-Not neccessary, but is greatly appreciated, if you use this work.
+Please do not forget to cite the original paper if you use the implemented method:
 
+```bibtex
+@inproceedings{bowman2016generating,
+  title={Generating sentences from a continuous space},
+  author={Bowman, Samuel R and Vilnis, Luke and Vinyals, Oriol and Dai, Andrew M and Jozefowicz, Rafal and Bengio, Samy},
+  booktitle={20th SIGNLL Conference on Computational Natural Language Learning, CoNLL 2016},
+  pages={10--21},
+  year={2016},
+  organization={Association for Computational Linguistics (ACL)}
+}
+```
+
+Citing this repo is not necessary, but is greatly appreciated, if you use this work.
 ```bibtex
 
 @misc{Alekseev2018lstmvaekeras,

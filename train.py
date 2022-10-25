@@ -53,17 +53,26 @@ def get_text_data(data_path, num_samples=1000):
 
 if __name__ == "__main__":
 
-    timesteps_max, enc_tokens, characters, char2id, id2char, x, x_decoder = get_text_data(num_samples=3000,
-                                                                                          data_path="data/fra.txt")
+    from argparse import ArgumentParser
+
+    p = ArgumentParser()
+    p.add_argument("--input", default="data/fra.txt", type=str)
+    p.add_argument("--num_samples", default=3000, type=int)
+    p.add_argument("--batch_size", default=1, type=int)
+    p.add_argument("--epochs", default=40, type=int)
+    p.add_argument("--latent_dim", default=191, type=int)
+    p.add_argument("--inter_dim", default=353, type=int)
+    p.add_argument("--samples", default=5, type=int)
+    args = p.parse_args()
+
+    timesteps_max, enc_tokens, characters, char2id, id2char, x, x_decoder = get_text_data(num_samples=args.num_samples,
+                                                                                          data_path=args.input)
 
     print(x.shape, "Creating model...")
 
-    input_dim = x.shape[-1]
-    timesteps = x.shape[-2]
-    batch_size = 1
-    latent_dim = 191
-    intermediate_dim = 353
-    epochs = 40
+    input_dim, timesteps = x.shape[-1], x.shape[-2]
+    batch_size, latent_dim = args.batch_size, args.latent_dim
+    intermediate_dim, epochs = args.inter_dim, args.epochs
 
     vae, enc, gen, stepper = create_lstm_vae(input_dim,
                                              batch_size=batch_size,
@@ -80,7 +89,7 @@ if __name__ == "__main__":
         return inference.decode_sequence(s, gen, stepper, input_dim, char2id, id2char, timesteps_max)
 
 
-    for _ in range(5):
+    for _ in range(args.samples):
 
         id_from = np.random.randint(0, x.shape[0] - 1)
         id_to = np.random.randint(0, x.shape[0] - 1)

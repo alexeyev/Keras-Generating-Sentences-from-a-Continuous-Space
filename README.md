@@ -11,19 +11,19 @@ Updated: this code was written a while ago. So now probably the best way to run 
 a Linux or WSL user, however, Mac/Windows instructions should be similar).
 
 ```bash
-    conda create -y --name continuous_space python=3.6 && conda activate continuous_space
-    wget http://d2l-data.s3-accelerate.amazonaws.com/fra-eng.zip && \
+conda create -y --name continuous_space python=3.6 && conda activate continuous_space
+wget http://d2l-data.s3-accelerate.amazonaws.com/fra-eng.zip && \
         unzip fra-eng.zip && mv fra-eng/fra.txt data/ && rm -r fra-eng* 
-    conda install -y tensorflow==1.13.1
-    conda install -y keras==2.2.4
-    conda install -c anaconda nltk==3.4.5
-    python -m nltk.downloader punkt
+conda install -y tensorflow==1.13.1
+conda install -y keras==2.2.4
+conda install -c anaconda nltk==3.4.5
+python -m nltk.downloader punkt
 ```
 (this may take a while!)
 
 Then run e.g.
 ```bash
-    python train.py --input data/fra.txt --epochs 20
+python train.py --input data/fra.txt --epochs 20
 ```
 
 ## References
